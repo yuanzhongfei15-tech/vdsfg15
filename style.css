@@ -1,0 +1,498 @@
+:root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #c9a962;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a5a;
+    --text-light: #8a8a9a;
+    --bg-primary: #f5f5f7;
+    --bg-secondary: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --border: rgba(201, 169, 98, 0.2);
+    --shadow: 0 10px 40px rgba(26, 26, 46, 0.08);
+}
+
+.dark-mode {
+    --primary: #e8e8e8;
+    --secondary: #c9a962;
+    --accent: #c9a962;
+    --text-primary: #e8e8e8;
+    --text-secondary: #b8b8c8;
+    --text-light: #787888;
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #161625;
+    --card-bg: rgba(22, 22, 37, 0.9);
+    --border: rgba(201, 169, 98, 0.3);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.8;
+    min-height: 100vh;
+    transition: background 0.4s ease, color 0.4s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(201, 169, 98, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+}
+
+.title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    letter-spacing: 4px;
+    font-weight: 300;
+    margin-top: 24px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+    border-color: var(--accent);
+}
+
+.theme-toggle .icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-primary);
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle .sun {
+    opacity: 1;
+}
+
+.theme-toggle .moon {
+    opacity: 0;
+    position: absolute;
+}
+
+.dark-mode .theme-toggle .sun {
+    opacity: 0;
+}
+
+.dark-mode .theme-toggle .moon {
+    opacity: 1;
+}
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: 16px 24px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.15);
+}
+
+.search-input::placeholder {
+    color: var(--text-light);
+}
+
+.search-btn {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.search-btn:hover svg {
+    color: var(--bg-secondary);
+}
+
+.search-btn svg {
+    width: 22px;
+    height: 22px;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.category-btn {
+    padding: 12px 28px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+.category-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-secondary);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.action-btn {
+    padding: 16px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #d4b878 100%);
+    color: var(--bg-secondary);
+    box-shadow: 0 8px 24px rgba(201, 169, 98, 0.35);
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(201, 169, 98, 0.45);
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.quote-container {
+    display: grid;
+    gap: 24px;
+}
+
+.quote-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 32px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 120px;
+    color: var(--accent);
+    opacity: 0.1;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.quote-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--accent);
+}
+
+.quote-category {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(201, 169, 98, 0.12);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.quote-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.copy-btn {
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.copy-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(201, 169, 98, 0.1);
+}
+
+.copy-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.footer p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+    padding: 16px 32px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 16px;
+    }
+
+    .title {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+
+    .theme-toggle {
+        position: relative;
+        margin: 24px auto 0;
+        right: auto;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .category-nav {
+        gap: 8px;
+    }
+
+    .category-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    .quote-card {
+        padding: 32px 24px;
+    }
+
+    .quote-text {
+        font-size: 1.2rem;
+        line-height: 1.9;
+    }
+
+    .quote-card::before {
+        font-size: 80px;
+        top: 16px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+
+    .category-nav {
+        justify-content: flex-start;
+    }
+
+    .action-btn {
+        padding: 14px 32px;
+        font-size: 0.95rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quote-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.quote-card:nth-child(1) { animation-delay: 0.05s; }
+.quote-card:nth-child(2) { animation-delay: 0.1s; }
+.quote-card:nth-child(3) { animation-delay: 0.15s; }
+.quote-card:nth-child(4) { animation-delay: 0.2s; }
+.quote-card:nth-child(5) { animation-delay: 0.25s; }
+.quote-card:nth-child(6) { animation-delay: 0.3s; }
